@@ -8,6 +8,7 @@ defmodule Wabanex.IMC do
 
     defp handle_file({:ok, content}) do
         content
+        |> String.replace(~r/\r/, "")
         |> String.split("\n")
         |> Enum.map(fn elem -> parse_line(elem) end)
     end
@@ -18,6 +19,8 @@ defmodule Wabanex.IMC do
 
     defp parse_line(line) do
         line
-        |> String.split(",")
+        |> String.split("\r")
+        |> List.update_at(1, &String.to_float/1)
+        |> List.update_at(2, &String.to_float/1)
     end
 end
