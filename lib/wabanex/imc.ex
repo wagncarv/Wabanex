@@ -6,6 +6,11 @@ defmodule Wabanex.IMC do
         |> handle_file()
     end
 
-    defp handle_file({:ok, content}), do: content
-    defp handle_file({:error, reason}), do: {:error, reason}
+    defp handle_file({:ok, content}) do
+        {:ok, content}
+    end
+
+    defp handle_file({:error, _reason}) do
+        {:error, "Error while reading the file"}
+    end
 end
