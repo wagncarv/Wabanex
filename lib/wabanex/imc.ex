@@ -1,7 +1,8 @@
 defmodule Wabanex.IMC do
 
     def calculate(filename) do
-        File.read(filename)
+        filename
+        |> File.read()
         |> handle_file()
     end
 
